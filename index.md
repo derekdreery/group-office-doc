@@ -1,7 +1,5 @@
 # Groupoffice ActiveRecord Tutorial
 
-[toc]
-
 ## Introduction
 The groupoffice ActiveRecord.php is a custom implementation of the [active record pattern][1] commonly
 used for database access from web applications. The system can seem complex and daunting at first, but
@@ -169,6 +167,14 @@ If you want to have access control on a per-record basis, you have to specify an
 for the acl id here. The field can either be in the model, or in one relation (so for a contact in the
 addressbook module the addressbook contains
 ### Constructing queries
+
+#### Filter by permissions
+For example, if you wanted to only return those records where the user has write access, you would do
+```php
+<?php
+$fp = GO_Base_Db_FindParams::newInstance()
+	->permissionLevel(GO_Base_Model_Acl::WRITE_PERMISSION);
+```
 
   [1]: http://en.wikipedia.org/wiki/Active_record_pattern "Active record pattern"
   [2]: https://github.com/derekdreery/goadmin "Groupoffice Admin"
